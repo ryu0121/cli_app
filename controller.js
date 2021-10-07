@@ -1,4 +1,34 @@
+class Controller {
+  static appendEchoParagraph(parentDiv, inputEle, filesystem) {
+    parentDiv.innerHTML+=
+      `<p class="m-0">
+          <span style='color:green'>root</span>
+          <span style='color:magenta'>@</span>
+          <span style='color:blue'>ryu</span>
+          ${filesystem.pwd()}: ${inputEle.value}
+      </p>`;
 
+    return;
+  }
+
+  static appendResultParagraph(parentDiv, isValid, message) {
+    let promptName = '';
+    let promptColor = '';
+    if (isValid){
+        promptName = 'FileSystem';
+        promptColor = 'turquoise';
+    }
+    else{
+        promptName = 'FileSystemError';
+        promptColor = 'red';
+    }
+    parentDiv.innerHTML+=
+            `<p class="m-0 ${promptColor}">
+                ${promptName}: ${message}
+            </p>`;
+    return;
+  }
+}
 
 // touch [fileOrDirName]: 指定した名前のファイルをカレントディレクトリに作成します。ファイルまたはディレクトリが既に存在する場合は、ノードのdateModified値を現在の日付に更新します。
 // mkDir [dirName]: 与えられた名前でカレントディレクトリに新しいディレクトリを作成します。
