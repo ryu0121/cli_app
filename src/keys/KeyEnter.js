@@ -1,4 +1,7 @@
-class KeyEnter extends AbstractKey {
+import Controller from '../Controller';
+import CommandLineParser from '../CommandLineParser';
+
+export default class KeyEnter {
   call(cli) {
     if(cli.config.CLITextInput.value != '') {
       const parsedCLIArray = CommandLineParser.call(cli.config.CLITextInput.value);

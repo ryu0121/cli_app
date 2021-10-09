@@ -1,4 +1,6 @@
-class HistoryStack {
+import CommandNode from "./CommandNode";
+
+export default class TempLogStack {
   constructor() {
     this.head = null;
   }

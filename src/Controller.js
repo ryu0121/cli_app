@@ -1,4 +1,4 @@
-class Controller {
+export default class Controller {
   static appendEchoParagraph(parentDiv, inputEle, filesystem) {
     parentDiv.innerHTML+=
       `<p class="m-0">

@@ -1,0 +1,21 @@
+{
+  "name": "cli_app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Ryuhei Kashi <manchester.ryu.121@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "webpack": "^5.58.0",
+    "webpack-dev-server": "^4.3.1"
+  },
+  "scripts": {
+    "build": "webpack --watch",
+    "start": "webpack-dev-server"
+  },
+  "dependencies": {
+    "css-loader": "^6.3.0",
+    "html-webpack-plugin": "^5.3.2",
+    "style-loader": "^3.3.0",
+    "webpack-cli": "^4.9.0"
+  }
+}

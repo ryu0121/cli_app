@@ -1,4 +1,9 @@
-class Cli {
+import AbstractKey from './keys/AbstractKey';
+import FileSystem from './FileSystem';
+import HistoryStack from './HisotyStack';
+import TempLogStack from './TempLogStack';
+
+export default class Cli {
   constructor() {
     this.config = {
       CLIOutputDiv: document.getElementById('CLIOutputDiv'),
@@ -6,13 +11,15 @@ class Cli {
     };
     this.filesystem = new FileSystem();
     this.history = new HistoryStack();
-    this.tempLog = [];
-    this.count = 0;
+    this.tempLog = new TempLogStack();
     this.key = null;
   }
 
   implementKey = (event) => {
-    const strategy = AbstractKey.new(event.key);
+    if (event.key != 'Enter' && event.key != 'ArrowUp' && event.key != 'ArrowDown') {
+      return;
+    }
+    const strategy = new AbstractKey(event.key);
     strategy.key.call(this);
   }
 
@@ -28,9 +35,3 @@ class Cli {
     this.history.push(command);
   }
 }
-
-const cli = new Cli();
-const cliTextInput = cli.config.CLITextInput;
-cliTextInput.addEventListener('keyup', (event) => {
-  cli.implementKey(event);
-});
