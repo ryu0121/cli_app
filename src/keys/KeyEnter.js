@@ -1,27 +1,33 @@
 import Controller from '../Controller';
 import CommandLineParser from '../CommandLineParser';
+import CommandLineValidator from '../CommandLineValidator';
 
 export default class KeyEnter {
-  call(cli) {
-    if(cli.config.CLITextInput.value != '') {
-      const parsedCLIArray = CommandLineParser.call(cli.config.CLITextInput.value);
-      if (parsedCLIArray.length != 0) {
-        cli.addHistory(cli.config.CLITextInput.value);
+  execute(cli) {
+    const inputValue = cli.getInputValue();
+    if(inputValue === '') {
+      Controller.appendEchoParagraph(cli);
+    } else {
+      const parsedCLIArray = CommandLineParser.execute(inputValue);
+      if (parsedCLIArray.length !== 0) {
+        cli.appendHistory(inputValue);
       }
 
-      Controller.appendEchoParagraph(cli.config.CLIOutputDiv, cli.config.CLITextInput, cli.filesystem);
-      cli.config.CLITextInput.value = '';
+      Controller.appendEchoParagraph(cli);
+      cli.getTextInput().value = '';
 
-      // const validatorResponse = Validator.call(cli.filesystem, parsedCLIArray);
-      // if (validatorResponse.isValid == false) {
-      // Controller.appendResultParagraph(cli.config.CLIOutputDiv, false, validatorResponse.errorMessage);
-      // } else {
-        Controller.appendResultParagraph(cli.config.CLIOutputDiv, true, cli.evaluatedResultsStringFromParsedCLIArray(parsedCLIArray));
-      // }
-      cli.adjustTop();
+      const validatorResponse = CommandLineValidator.execute(cli, parsedCLIArray);
+      const resultMessage = this.calculateResultMessage_(validatorResponse, cli, parsedCLIArray);
+      Controller.appendResultParagraph(cli.getOutputDiv(), validatorResponse.isValid, resultMessage);
+    }
+    cli.adjustTop();
+  }
+
+  calculateResultMessage_(validatorResponse, cli, parsedCLIArray) {
+    if (validatorResponse.isValid === false) {
+      return validatorResponse.errorMessage;
     } else {
-      Controller.appendEchoParagraph(cli.config.CLIOutputDiv, cli.config.CLITextInput, cli.filesystem);
-      cli.adjustTop();
+      return cli.evaluateCLICommand(parsedCLIArray);
     }
   }
 }

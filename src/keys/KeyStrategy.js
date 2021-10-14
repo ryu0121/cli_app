@@ -2,7 +2,7 @@ import KeyEnter from "./KeyEnter";
 import KeyArrowUp from "./KeyArrowUp";
 import KeyArrowDown from "./KeyArrowDown";
 
-export default class AbstractKey {
+export default class KeyStrategy {
   constructor(key) {
     this.key = this.selectKey(key);
   }

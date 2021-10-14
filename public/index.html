@@ -1,18 +1,14 @@
 <!doctype html>
 <html lang="en">
-<!--CSS-->
-<link rel="stylesheet" type="text/css" href="style.css">
 
 <head>
-  <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
-  <title>Command Line Interface Simulation</title>
+  <title>Command Line Interface Simulation(RYU)</title>
 </head>
 
 <body>
@@ -20,15 +16,15 @@
     <div class="text-center py-2 my-2">
       <h1>File System</h1>
     </div>
-    <div class="container col-8 bg-result console-h console neumophism-console">
-      <div class="d-flex vh-5 pt-2 mb-2">
+    <div class="container bg-result console-frame neumophism-console d-flex flex-column justify-content-center">
+      <div class="d-flex vh-5 align-items-center">
         <div class="red"></div>
         <div class="yellow ml-2"></div>
         <div class="green ml-2"></div>
       </div>
-      <div id="CLIOutputDiv" class="container bg-dark text-white console-h py-2">
+      <div id="CLIOutputDiv" class="container bg-dark text-white console py-2 my-2">
       </div>
-      <div class="my-3 d-flex">
+      <div>
         <input type="text" id="CLITextInput" class="container neumophism-input justify-content-center" placeholder="type any command">
       </div>
     </div>

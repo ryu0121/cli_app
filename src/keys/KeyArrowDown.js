@@ -1,5 +1,5 @@
 export default class KeyArrowDown {
-  call(cli) {
+  execute(cli) {
     const displayedCommand = cli.tempLog.peek();
     if (displayedCommand == null) {
       return;

@@ -1,4 +1,4 @@
-import CommandNode from "./CommandNode";
+import HistoryNode from "./HistoryNode";
 
 export default class TempLogStack {
   constructor() {
@@ -7,7 +7,7 @@ export default class TempLogStack {
 
   push(command) {
     const temp = this.head;
-    this.head = new CommandNode(command);
+    this.head = new HistoryNode(command);
     this.head.next = temp;
   }
 
